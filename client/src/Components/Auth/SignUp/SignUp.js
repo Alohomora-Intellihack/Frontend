@@ -1,23 +1,23 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box,Button } from "@mui/material";
 import { AuthStyles } from "../styles";
 import { Link } from "react-router-dom";
+import SignUpForm from "./SignUpForm";
 
 const SignUp = () => {
   const classes = AuthStyles();
   return (
     <>
       <Box className={classes.container}>
-        <Typography>Sign Up</Typography>
-        <form>
-          <h1>name</h1>
-          <h2>password</h2>
-        </form>
-        <h3>Already have an account</h3>
+        <div className={classes.heading}>Sign Up with TrainWell</div>
+        <SignUpForm />
+        <div className={classes.text}>Already have an Account?</div>
         <Link to="signin">
-          <Button color="success" variant="contained">
+          <span className={classes.submitButton}>
+          <Button sx={{backgroundColor:'purple'}} variant="contained">
             Sign In
           </Button>
+          </span>
         </Link>
       </Box>
     </>

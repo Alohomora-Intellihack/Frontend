@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Button, FormLabel, TextField } from "@mui/material";
 import { AuthStyles } from "../styles";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
-const SignUpForm = () => {
+const SignInForm = () => {
   const classes = AuthStyles();
-  const initialValues = { username: "", email: "", password: "" };
+  const initialValues = {email: "", password: "" };
   const [values, setValues] = useState(initialValues);
   const [FormErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const enable = values.username && values.email && values.password;
+  const enable = values.email && values.password;
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,14 +25,6 @@ const SignUpForm = () => {
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-    if (!values.username) {
-      errors.username = "Username is required!";
-    } else if (values.username.length < 4) {
-      errors.username = "Username must be more than 4 characters";
-    } else if (values.username.length > 30) {
-      errors.username = "Username cannot exceed 30 characters";
-    }
 
     if (!values.password) {
       errors.password = "Password is required!";
@@ -57,13 +51,14 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (Object.keys(FormErrors).length === 0 && isSubmit) {
-      console.log("signup success");
+      console.log("sigin success");
       swal({
-        text: "Sign Up is successfull",
+        text: "Sign In is successfull",
         icon: "success",
         timer: 2000,
         buttons: false,
       });
+      navigate('/home');
     }
   }, [FormErrors, isSubmit]);
 
@@ -71,19 +66,7 @@ const SignUpForm = () => {
     <>
       <div className={classes.FormContainer}>
         <form onSubmit={handleSubmit}>
-          <FormLabel required="true" className={classes.label}>
-            Username
-          </FormLabel>
-          <TextField
-            className={classes.textField}
-            fullWidth
-            name="username"
-            value={values.username}
-            onChange={handleChange}
-            error={FormErrors.username}
-            helperText={FormErrors.username}
-          />
-
+          
           <FormLabel required="true" className={classes.label}>
             Email
           </FormLabel>
@@ -117,7 +100,7 @@ const SignUpForm = () => {
               type="submit"
               disabled={!enable}
             >
-              Sign Up
+              Sign In
             </Button>
           </span>
         </form>
@@ -126,4 +109,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;
