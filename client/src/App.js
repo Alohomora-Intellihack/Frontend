@@ -1,7 +1,12 @@
-import Routers from './Routers';
+import Routers from './Routes/Routers';
+import UserContextProvider from './Context/UserContextProvider';
 
 function App() {
-  return (<Routers/>);
+  return (
+    <UserContextProvider>
+      <Routers/>
+    </UserContextProvider>
+  );
 }
 
 export default App;

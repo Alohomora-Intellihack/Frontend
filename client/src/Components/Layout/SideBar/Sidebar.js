@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useContext} from "react";
 import { NavLink } from "react-router-dom";
 import { links } from "./SidebarLinks";
 import { Drawer,Toolbar,Divider,List,ListItem,ListItemButton,ListItemIcon,ListItemText,} from "@mui/material";
 import { LayoutStyles } from "../styles";
+import { UserContext } from './../../../Context/UserContext';
 
 const Sidebar = () => {
   const classes = LayoutStyles();
+  const {userId} = useContext(UserContext);
 
   return (
     <>
@@ -14,7 +16,7 @@ const Sidebar = () => {
         <Divider />
         <List  style={{backgroundColor:'#E5E4E2'}} >
           {links.map((text) => (
-            <NavLink to={`/home/${text.name}`} key={text.name}>
+            <NavLink to={`/home/${userId}/${text.name}`} key={text.name}>
               <ListItem key={text} disablePadding>
                 <ListItemButton >
                   <ListItemIcon>{text.icon}</ListItemIcon>

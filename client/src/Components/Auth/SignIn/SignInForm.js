@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Button, FormLabel, TextField } from "@mui/material";
 import { AuthStyles } from "../styles";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from './../../../Context/UserContext';
 
 const SignInForm = () => {
   const classes = AuthStyles();
-  const initialValues = {email: "", password: "" };
+  const {userId,setUserId} = useContext(UserContext);
+  const initialValues = { username: "", email: "", password: "" };
   const [values, setValues] = useState(initialValues);
   const [FormErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -19,12 +21,23 @@ const SignInForm = () => {
       ...values,
       [name]: value,
     });
+    if (name === 'username') {
+      setUserId(value);
+    }
   };
 
   //handling errors
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+    if (!values.username) {
+      errors.username = "Username is required!";
+    } else if (values.username.length < 4) {
+      errors.username = "Username must be more than 4 characters";
+    } else if (values.username.length > 30) {
+      errors.username = "Username cannot exceed 30 characters";
+    }
 
     if (!values.password) {
       errors.password = "Password is required!";
@@ -58,7 +71,7 @@ const SignInForm = () => {
         timer: 2000,
         buttons: false,
       });
-      navigate('/home');
+      navigate(`/home/${userId}`);
     }
   }, [FormErrors, isSubmit]);
 
@@ -66,7 +79,19 @@ const SignInForm = () => {
     <>
       <div className={classes.FormContainer}>
         <form onSubmit={handleSubmit}>
-          
+          <FormLabel required="true" className={classes.label}>
+            Username
+          </FormLabel>
+          <TextField
+            className={classes.textField}
+            fullWidth
+            name="username"
+            value={values.username}
+            onChange={handleChange}
+            error={FormErrors.username}
+            helperText={FormErrors.username}
+          />
+
           <FormLabel required="true" className={classes.label}>
             Email
           </FormLabel>

@@ -1,7 +1,7 @@
-import React from "react";
+import React,{ useContext} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  Dashboard,
+import { UserContext } from './../Context/UserContext';
+import  {Dashboard,
   Diet,
   DietPrediction,
   HealthProfile,
@@ -10,9 +10,10 @@ import {
   SignUp,
   Workouts,
   WorkoutTypes,
-} from "./Components/index";
+} from "../Components/index";
 
 const Routers = () => {
+  const {userId} = useContext(UserContext);
   return (
     <>
       <BrowserRouter>
@@ -20,7 +21,7 @@ const Routers = () => {
           <Route path="/" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
 
-          <Route path="/home" element={<HomePage />}>
+          <Route path="/home/:userId" element={<HomePage />}>
             <Route path="" element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
 
