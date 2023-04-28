@@ -5,6 +5,7 @@ export const LayoutStyles = makeStyles(() =>
     drawer: {
         width: '240px',
         flexShrink: 0,
+        backgroundColor : 'black',
         "& .MuiDrawer-paper": {
           width:'240px',
           boxSizing: "border-box",
