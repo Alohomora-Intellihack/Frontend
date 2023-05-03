@@ -1,16 +1,18 @@
 import React,{ useContext} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from './../Context/UserContext';
-import  {BodyInfo, Dashboard,
+import  {BodyInfo, 
+  Dashboard,
   Diet,
   DietPrediction,
+  ExerciseCount,
+  Exercises,
   HealthProfile,
   HomePage,
   MedicalInfo,
   SignIn,
   SignUp,
   WorkInfo,
-  Workouts,
   WorkoutTypes,
 } from "../Components/index";
 
@@ -36,7 +38,8 @@ const Routers = () => {
 
             <Route path="workouts">
               <Route index element={<WorkoutTypes />} />
-              <Route path="exercises" element={<Workouts />} />
+              <Route path="exercises" element={<Exercises/>} />
+              <Route path="exerciseCount" element={<ExerciseCount/>} />
             </Route>
 
             <Route path="diet">

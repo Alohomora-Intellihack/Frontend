@@ -10,7 +10,8 @@ export { default as BodyInfo } from './HealthProfile/BodyInfo';
 export { default as WorkInfo } from './HealthProfile/WorkInfo';
 
 export { default as WorkoutTypes } from './Workouts/WorkoutTypes';
-export { default as Workouts } from './Workouts/Workouts';
+export { default as Exercises } from './Workouts/Exercises';
+export { default as ExerciseCount } from './Workouts/ExerciseCount';
 
 export { default as Diet } from './Diet/Diet';
 export { default as DietPrediction } from './Diet/DietPrediction';
