@@ -8,7 +8,9 @@ const WorkoutTypes = () => {
   return (
     <>
       <h1>Workout Types</h1>
-      <Link to={`/home/${userId}/workouts/exercises`}><Button variant="contained">Workouts 01</Button></Link>
+      <Link to={`/home/${userId}/workouts/exercises`}><Button variant="contained">Exercises</Button></Link>
+      <Link to={`/home/${userId}/workouts/exercises`}><Button variant="contained">Yoga</Button></Link>
+      <Link to={`/home/${userId}/workouts/exercises`}><Button variant="contained">Meditation</Button></Link>
     </>
   );
 };
