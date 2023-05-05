@@ -111,6 +111,7 @@ const SignInForm = () => {
           <TextField
             className={classes.textField}
             fullWidth
+            type="password"
             name="password"
             value={values.password}
             onChange={handleChange}

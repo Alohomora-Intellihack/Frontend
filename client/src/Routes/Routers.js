@@ -37,13 +37,12 @@ const Routers = () => {
             </Route>
 
             <Route path="workouts">
-              <Route index element={<WorkoutTypes />} />
-              <Route path="exercises" element={<Exercises/>} />
+              <Route index element={<Exercises/>}  />
               <Route path="exerciseCount" element={<ExerciseCount/>} />
             </Route>
 
-            <Route path="diet">
-              <Route index element={<Diet />} />
+            <Route path="nutrition">
+              <Route index element={<Diet/>} />
               <Route path="input" element={<DietPrediction />} />
             </Route>
             

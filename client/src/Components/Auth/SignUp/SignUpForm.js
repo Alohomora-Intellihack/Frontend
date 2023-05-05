@@ -104,6 +104,7 @@ const SignUpForm = () => {
             className={classes.textField}
             fullWidth
             name="password"
+            type="password"
             value={values.password}
             onChange={handleChange}
             error={FormErrors.password}

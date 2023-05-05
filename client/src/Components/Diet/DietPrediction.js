@@ -1,6 +1,7 @@
-import { Grid } from "@mui/material";
+import { Grid, Button, Card, CardMedia, CardContent,Typography} from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 import { HomeStyles } from "./../Dashboard/styles";
 
 const DietPrediction = () => {
@@ -16,7 +17,12 @@ const DietPrediction = () => {
     e.preventDefault();
 
     if (!image) {
-      alert("Please select an image");
+      swal({
+        text: "Image of the food is not uploaded",
+        icon: "error",
+        timer: 2000,
+        buttons: false,
+      });
       return;
     }
 
@@ -29,35 +35,76 @@ const DietPrediction = () => {
         formData
       );
       setNutrients(response.data);
+      swal({
+        text: "Nutrient profile of uploaded food image updated",
+        icon: "success",
+        timer: 2000,
+        buttons: false,
+      });
+      console.log("cholestrol: ", response.data.foods);
     } catch (error) {
       console.error("Error fetching nutrients:", error);
-      alert("Error fetching nutrients");
+      swal({
+        text: "Errpr in getting Nutrient Profile",
+        icon: "error",
+        timer: 2000,
+        buttons: false,
+      });
     }
   };
 
   return (
     <>
       <div className={classes.heading}>Predicting Food Calories</div>
-      {/* <Grid container spacing={2}>
-        <Grid item xs={7}>
-          <div className={classes.predictContainer}>Prediction container</div>
-        </Grid>
+      <Grid container spacing={2}>
         <Grid item xs={5}>
-          <div className={classes.predictContainer}>Camera container</div>
+          <div className={classes.predictContainer}>
+            <p className={classes.formText}>
+              Upload the image of the food you consume and click on the
+              <b> Get Nutrients</b> button to track the nutrient profile you
+              consume at this moment.
+            </p>
+            <form onSubmit={handleSubmit}>
+              <input type="file" onChange={handleChange} />
+              <Button type="submit">Get Nutrients</Button>
+            </form>
+          </div>
         </Grid>
-      </Grid> */}
-    
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleChange} />
-        <button type="submit">Get Nutrients</button>
-      </form>
-      {nutrients && (
-        <div>
-          <h2>Nutritional Values</h2>
-          <pre>{JSON.stringify(nutrients, null, 2)}</pre>
-        </div>
-      )}
 
+        <Grid item xs={7}>
+          <div className={classes.predictContainer}>
+            <h2 style={{ color: "purple", paddingTop: "20px" }}>
+              Nutritional Values
+            </h2>
+
+            {nutrients && (
+              <div>
+                <Card sx={{ width :'500px'}}>
+                  <CardMedia
+                    component="img"
+                    sx={{ width: '400px',margin:"40px 40px 0px 40px",padding:'0px 10px 0px 20px'}}
+                    image={nutrients.foods[0].photo.thumb}
+                    alt="food"/>
+                  <CardContent>
+                      <div className={classes.cardHeading}>{nutrients.foods[0].food_name}</div>
+                    <Typography variant="body2" color="text.secondary" style={{backgroundColor:'#d8d8d8',padding:'10px 0px 10px 0px'}}>
+                      <pre className={classes.cardText}>Calories :{" "}{JSON.stringify(nutrients.foods[0].nf_calories,null,2)} kCal</pre>
+                      <pre className={classes.cardText}>Cholestrol :{" "}{JSON.stringify(nutrients.foods[0].nf_cholesterol,null,2)} mg</pre>
+                      <pre className={classes.cardText}>Protein :{" "}{JSON.stringify(nutrients.foods[0].nf_protein, null, 2)} g</pre>
+                      <pre className={classes.cardText}>Total Carbohydrate :{" "}{JSON.stringify( nutrients.foods[0].nf_total_carbohydrate,null,2)} Grid</pre>
+                      <pre className={classes.cardText}>Total Fat :{" "}{JSON.stringify(nutrients.foods[0].nf_total_fat,null,2)} g</pre>
+                      <pre className={classes.cardText}>Potassium :{" "}{JSON.stringify(nutrients.foods[0].nf_potassium, null,2 )} mg</pre>
+                      <pre className={classes.cardText}>Sodium :{" "}{JSON.stringify(nutrients.foods[0].nf_sodium, null, 2)} mg</pre> 
+                      <pre className={classes.cardText}>Sugars :{" "}{JSON.stringify(nutrients.foods[0].nf_sugars, null, 2)} g</pre>
+                      <pre className={classes.cardText}>Dietary Fiber :{" "}{JSON.stringify(nutrients.foods[0].nf_dietary_fiber,null,2)} g</pre>
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+          </div>
+        </Grid>
+      </Grid>
     </>
   );
 };

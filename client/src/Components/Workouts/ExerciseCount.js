@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { WorkoutStyles } from "./styles";
 import axios from "axios";
+import { HomeStyles } from "./../Dashboard/styles";
 
 const ExerciseCount = () => {
   const location = useLocation();
   const classes = WorkoutStyles();
+  const classes2 = HomeStyles();
   const propName = new URLSearchParams(location.search).get("propName");
   const [count, setCount] = useState(0);
   const [calories, setCalories] = useState(0);
@@ -15,7 +17,8 @@ const ExerciseCount = () => {
     const countInput = e.target.elements.co.value;
     console.log("count: ", countInput);
 
-    axios.post(`http://localhost:5000/${propName}`, {
+    axios
+      .post(`http://localhost:5000/${propName}`, {
         count: countInput,
       })
       .then((response) => {
@@ -30,14 +33,14 @@ const ExerciseCount = () => {
 
   return (
     <>
-      <div className={classes.heading}>{propName}</div>
+      <div className={classes2.heading}>Workout, Count & Burn calories</div>
       <form
         className={classes.form}
         method="POST"
         action={`/${propName}`}
         onSubmit={handleSubmit}
       >
-        <label className={classes.label}>Count</label>
+        <label className={classes.label}>{propName} count </label>
         <input className={classes.input} type="number" name="co" />
 
         <button className={classes.button} type="submit">
@@ -45,8 +48,10 @@ const ExerciseCount = () => {
         </button>
       </form>
 
-      <h3 className={classes.count}>Count {count}</h3>
-      <h3 className={classes.calories}>Calories {calories} </h3>
+      <div className={classes.countText}>
+        <div className={classes.calories}>Total count of {propName} : {count}</div>
+        <div className={classes.calories}>Total calories burnt  : {calories} </div>
+      </div>
     </>
   );
 };

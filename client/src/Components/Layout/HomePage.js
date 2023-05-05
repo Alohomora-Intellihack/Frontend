@@ -11,7 +11,7 @@ const HomePage = () => {
       <Box className={classes.sidebar}>
         <Sidebar />
         <Box component="main" className={classes.content}>
-          <Header />
+          <Header/>
           <Outlet />
           <Footer />
         </Box>

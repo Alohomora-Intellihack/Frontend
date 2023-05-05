@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import { LayoutStyles } from "./../styles";
 
 const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
-}
+  const classes = LayoutStyles();
 
-export default Footer
+  return (
+    <>
+      <div className={classes.footer}>
+        <div className={classes.footerText}>
+          &copy; {new Date().getFullYear()} All rights reserved by Alohomora - TrainWell
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Footer;
