@@ -1,7 +1,9 @@
-import React,{ useContext} from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useContext } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from './../Context/UserContext';
-import  {BodyFat, BodyInfo, 
+import {
+  BodyFat,
+  BodyInfo,
   Dashboard,
   Diet,
   DietPrediction,
@@ -14,11 +16,10 @@ import  {BodyFat, BodyInfo,
   SignUp,
   WorkInfo,
   WorkoutDay,
-  WorkoutTypes,
-} from "../Components/index";
+} from '../Components/index';
 
 const Routers = () => {
-  const {userId} = useContext(UserContext);
+  const { userId } = useContext(UserContext);
   return (
     <>
       <BrowserRouter>
@@ -30,30 +31,28 @@ const Routers = () => {
             <Route path="" element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
 
-            <Route path="profile" >
-              <Route index element={<HealthProfile />}/>
-              <Route path="body" element={<BodyInfo/>}/>
-              <Route path="medical" element={<MedicalInfo/>}/>
-              <Route path="work" element={<WorkInfo/>}/>
+            <Route path="profile">
+              <Route index element={<HealthProfile />} />
+              <Route path="body" element={<BodyInfo />} />
+              <Route path="medical" element={<MedicalInfo />} />
+              <Route path="work" element={<WorkInfo />} />
             </Route>
 
             <Route path="workouts">
-              <Route index element={<WorkoutDay/>}  />
-              <Route path="exercise" element={<Exercises/>}/>
-              <Route path="exerciseCount" element={<ExerciseCount/>} />
+              <Route index element={<WorkoutDay />} />
+              <Route path="exercise" element={<Exercises />} />
+              <Route path="exerciseCount" element={<ExerciseCount />} />
             </Route>
 
             <Route path="nutrition">
-              <Route index element={<Diet/>} />
+              <Route index element={<Diet />} />
               <Route path="input" element={<DietPrediction />} />
             </Route>
 
             <Route path="body-fat">
-              <Route index element={<BodyFat/>}/>
+              <Route index element={<BodyFat />} />
             </Route>
-            
           </Route>
-
         </Routes>
       </BrowserRouter>
     </>

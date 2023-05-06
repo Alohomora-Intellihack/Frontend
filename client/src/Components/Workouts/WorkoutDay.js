@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from './../../Context/UserContext';
 import { HomeStyles } from './../Dashboard/styles';
@@ -13,6 +13,71 @@ const WorkoutDay = () => {
   const { userId } = useContext(UserContext);
   const classes2 = HomeStyles();
   const classes = HomeStyles();
+
+  const [monday, setMonday] = useState([]);
+  const [tuesday, setTuesday] = useState([]);
+  const [wednesday, setWednesday] = useState([]);
+  const [thursday, setThursday] = useState([]);
+  const [friday, setFriday] = useState([]);
+  const [saturday, setSaturday] = useState([]);
+  const [sunday, setSunday] = useState([]);
+
+  const [calories, setCalories] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response1 = await fetch(
+        'http://localhost:3004/workout/exercises/monday'
+      );
+      const data1 = await response1.json();
+      setMonday(data1);
+
+      const response2 = await fetch(
+        'http://localhost:3004/workout/exercises/tuesday'
+      );
+      const data2 = await response2.json();
+      setTuesday(data2);
+      const response3 = await fetch(
+        'http://localhost:3004/workout/exercises/wednesday'
+      );
+      const data3 = await response3.json();
+      setWednesday(data3);
+      const response4 = await fetch(
+        'http://localhost:3004/workout/exercises/thursday'
+      );
+      const data4 = await response4.json();
+      setThursday(data4);
+      const response5 = await fetch(
+        'http://localhost:3004/workout/exercises/friday'
+      );
+      const data5 = await response5.json();
+      setFriday(data5);
+      const response6 = await fetch(
+        'http://localhost:3004/workout/exercises/saturday'
+      );
+      const data6 = await response6.json();
+      setSaturday(data6);
+      const response7 = await fetch(
+        'http://localhost:3004/workout/exercises/sunday'
+      );
+      const data7 = await response7.json();
+      setSunday(data7);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        'http://localhost:3004/workout/totcalories/monday'
+      );
+      const data = await response.json();
+      setCalories(data[0].totCalories);
+      console.log(data[0].totCalories);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className={classes2.pageContainer}>
@@ -45,7 +110,7 @@ const WorkoutDay = () => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link to={`/home/${userId}/workouts/exercise?propName=monday`}>
                   <Button
                     className={classes.dashText}
                     style={{
@@ -59,11 +124,22 @@ const WorkoutDay = () => {
                 </Link>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                {monday.map((items) =>
+                  items.map((item) => (
+                    <Typography
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem',
+                        marginBottom: '0.5rem',
+                        color: 'grey',
+                      }}
+                    >
+                      {item.exercise_name}
+                      <br />
+                    </Typography>
+                  ))
+                )}
+                <h1>Total Calories : {calories}</h1>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -72,7 +148,9 @@ const WorkoutDay = () => {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link
+                  to={`/home/${userId}/workouts/exercise??propName=tuesday`}
+                >
                   <Button
                     className={classes.dashText}
                     style={{
@@ -86,11 +164,20 @@ const WorkoutDay = () => {
                 </Link>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                {tuesday.map((items) =>
+                  items.map((item) => (
+                    <Typography
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem',
+                        marginBottom: '0.5rem',
+                        color: 'grey',
+                      }}
+                    >
+                      {item.exercise_name}
+                    </Typography>
+                  ))
+                )}
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -99,7 +186,9 @@ const WorkoutDay = () => {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link
+                  to={`/home/${userId}/workouts/exercise/?propName=wednesday`}
+                >
                   <Button
                     className={classes.dashText}
                     style={{
@@ -113,11 +202,20 @@ const WorkoutDay = () => {
                 </Link>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                {wednesday.map((items) =>
+                  items.map((item) => (
+                    <Typography
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem',
+                        marginBottom: '0.5rem',
+                        color: 'grey',
+                      }}
+                    >
+                      {item.exercise_name}
+                    </Typography>
+                  ))
+                )}
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -126,7 +224,9 @@ const WorkoutDay = () => {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link
+                  to={`/home/${userId}/workouts/exercise/?propName=thursday`}
+                >
                   <Button
                     className={classes.dashText}
                     style={{
@@ -140,11 +240,20 @@ const WorkoutDay = () => {
                 </Link>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                {thursday.map((items) =>
+                  items.map((item) => (
+                    <Typography
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem',
+                        marginBottom: '0.5rem',
+                        color: 'grey',
+                      }}
+                    >
+                      {item.exercise_name}
+                    </Typography>
+                  ))
+                )}
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -153,7 +262,7 @@ const WorkoutDay = () => {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link to={`/home/${userId}/workouts/exercise/?propName=friday`}>
                   <Button
                     className={classes.dashText}
                     style={{
@@ -167,11 +276,20 @@ const WorkoutDay = () => {
                 </Link>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                {friday.map((items) =>
+                  items.map((item) => (
+                    <Typography
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem',
+                        marginBottom: '0.5rem',
+                        color: 'grey',
+                      }}
+                    >
+                      {item.exercise_name}
+                    </Typography>
+                  ))
+                )}
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -180,7 +298,9 @@ const WorkoutDay = () => {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link
+                  to={`/home/${userId}/workouts/exercise/?propName=saturday`}
+                >
                   <Button
                     className={classes.dashText}
                     style={{
@@ -194,11 +314,20 @@ const WorkoutDay = () => {
                 </Link>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                {saturday.map((items) =>
+                  items.map((item) => (
+                    <Typography
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem',
+                        marginBottom: '0.5rem',
+                        color: 'grey',
+                      }}
+                    >
+                      {item.exercise_name}
+                    </Typography>
+                  ))
+                )}
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -207,7 +336,7 @@ const WorkoutDay = () => {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link to={`/home/${userId}/workouts/exercise/?propName=sunday`}>
                   <Button
                     className={classes.dashText}
                     style={{
@@ -221,11 +350,20 @@ const WorkoutDay = () => {
                 </Link>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
+                {sunday.map((items) =>
+                  items.map((item) => (
+                    <Typography
+                      sx={{
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem',
+                        marginBottom: '0.5rem',
+                        color: 'grey',
+                      }}
+                    >
+                      {item.exercise_name}
+                    </Typography>
+                  ))
+                )}
               </AccordionDetails>
             </Accordion>
           </div>
