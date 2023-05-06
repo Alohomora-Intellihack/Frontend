@@ -13,6 +13,7 @@ import  {BodyFat, BodyInfo,
   SignIn,
   SignUp,
   WorkInfo,
+  WorkoutDay,
   WorkoutTypes,
 } from "../Components/index";
 
@@ -37,7 +38,8 @@ const Routers = () => {
             </Route>
 
             <Route path="workouts">
-              <Route index element={<Exercises/>}  />
+              <Route index element={<WorkoutDay/>}  />
+              <Route path="exercise" element={<Exercises/>}/>
               <Route path="exerciseCount" element={<ExerciseCount/>} />
             </Route>
 

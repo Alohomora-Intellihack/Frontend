@@ -12,6 +12,7 @@ export { default as WorkInfo } from './HealthProfile/WorkInfo';
 export { default as WorkoutTypes } from './Workouts/WorkoutTypes';
 export { default as Exercises } from './Workouts/Exercises';
 export { default as ExerciseCount } from './Workouts/ExerciseCount';
+export { default as WorkoutDay } from './Workouts/WorkoutDay';
 
 export { default as Diet } from './Diet/Diet';
 export { default as DietPrediction } from './Diet/DietPrediction';
