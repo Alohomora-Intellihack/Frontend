@@ -15,3 +15,5 @@ export { default as ExerciseCount } from './Workouts/ExerciseCount';
 
 export { default as Diet } from './Diet/Diet';
 export { default as DietPrediction } from './Diet/DietPrediction';
+
+export { default as BodyFat } from './BodyFat/BodyFat';

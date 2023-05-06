@@ -5,6 +5,11 @@ export const HomeStyles = makeStyles(() =>
     pageContainer: {
       padding: "5px 10px 150px 120px",
     },
+    dashText : {
+      textAlign:'center',
+      fontWeight:'bolder',
+      color:'#5a5a5a'
+    },
     heading: {
       textAlign: "center",
       fontSize: "40px",
@@ -30,22 +35,19 @@ export const HomeStyles = makeStyles(() =>
     bar:{
       padding:'10px 30px 20px 20px',
     },
+    formContainer : {
+      backgroundColor:'#f5f5f5',
+      margin:'40px 50px 120px 60px',
+      padding:'40px 30px 60px 80px',
+      borderRadius :'10px',
+      fontFamily :'Asap'
+    },
+    textField : {
+      paddingBottom :'20px !important',
+      paddingRight :'50px !important'
+    },
     profilePage: {
       margin: "20px 50px 30px 30px",
-    },
-    dashContainer : {
-      borderRadius : '7%',
-      margin :'10px 40px 50px 30%',
-      height : '300px',
-      width:'500px',
-      backgroundColor:'#d8d8d8'
-    },
-    dashText:{
-      paddingLeft :'70px',
-      paddingTop:'20px',
-      color :'#8d67af',
-      fontSize:'20px',
-      fontWeight:'bold'
     },
     profileContainer: {
       borderRadius: "10px",

@@ -1,4 +1,4 @@
-import { Grid, Button, Card, CardMedia, CardContent,Typography} from "@mui/material";
+import { Grid, Button, Card, CardMedia, CardContent,Typography, CircularProgress} from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
@@ -8,6 +8,7 @@ const DietPrediction = () => {
   const classes = HomeStyles();
   const [image, setImage] = useState(null);
   const [nutrients, setNutrients] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setImage(e.target.files[0]);
@@ -28,6 +29,7 @@ const DietPrediction = () => {
 
     const formData = new FormData();
     formData.append("image", image);
+    setIsLoading(true);
 
     try {
       const response = await axios.post(
@@ -50,6 +52,8 @@ const DietPrediction = () => {
         timer: 2000,
         buttons: false,
       });
+    }finally {
+      setIsLoading(false); 
     }
   };
 
@@ -76,7 +80,7 @@ const DietPrediction = () => {
             <h2 style={{ color: "purple", paddingTop: "20px" }}>
               Nutritional Values
             </h2>
-
+            {isLoading && <CircularProgress sx={{color:'#8d67af'}}/> }
             {nutrients && (
               <div>
                 <Card sx={{ width :'500px'}}>

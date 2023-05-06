@@ -1,7 +1,7 @@
 import React,{ useContext} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from './../Context/UserContext';
-import  {BodyInfo, 
+import  {BodyFat, BodyInfo, 
   Dashboard,
   Diet,
   DietPrediction,
@@ -44,6 +44,10 @@ const Routers = () => {
             <Route path="nutrition">
               <Route index element={<Diet/>} />
               <Route path="input" element={<DietPrediction />} />
+            </Route>
+
+            <Route path="body-fat">
+              <Route index element={<BodyFat/>}/>
             </Route>
             
           </Route>

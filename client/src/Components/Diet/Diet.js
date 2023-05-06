@@ -26,7 +26,7 @@ const Diet = () => {
       <Link to={`/home/${userId}/nutrition/input`}>
         <div className={classes.predictDietButton}>
           <Button variant="contained" sx={{ backgroundColor: "#8d67af" }}>
-            Predict Calaries <DoubleArrowSharp sx={{ fontSize: 20 }} />
+            Predict Calories <DoubleArrowSharp sx={{ fontSize: 20 }} />
           </Button>
         </div>
       </Link>

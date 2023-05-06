@@ -17,7 +17,8 @@ import {
   LineElement,
   CategoryScale,
 } from "chart.js";
-import { Grid } from "@mui/material";
+import { Grid,Card,CardContent, } from "@mui/material";
+import { AcUnit, LocalFireDepartment, RiceBowl } from "@mui/icons-material";
 
 Chart.register(ArcElement, PointElement, LineElement, CategoryScale);
 
@@ -25,18 +26,42 @@ const Dashboard = () => {
   const classes = HomeStyles();
   return (
     <>
-      <div className={classes.heading}>Dashboard</div>
+      <div className={classes.heading}> Fitness Tracker Dashboard</div>
       <div className={classes.pageContainer}>
-        <div className={classes.dashContainer}>
-          <div>
-            <div className={classes.dashText}>
-              <p>Current Body Fat percantage : 40.5g</p>
-              <p>Total Calories burnt : 40</p>
-              <p>Workout counts performed : 100</p>
-              <p>Total Calories consumed : 150</p>
-            </div>
-          </div>
-        </div>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Card sx={{width:'85%'}}>
+              <CardContent>
+              <Grid container spacing={2}>
+                <Grid item xs={9}> <p className={classes.dashText}>Current Body Fat percantage </p><p style={{fontSize:'35px',paddingLeft:'23px'}}><b>40.5%</b></p></Grid>
+                <Grid item xs={3}><div style={{paddingTop:'40px',paddingRight:'-20px'}}><AcUnit  sx={{fontSize:'65px',color:'#296d98'}}/></div> </Grid>
+              </Grid> 
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Card sx={{width:'85%'}}>
+              <CardContent>
+              <Grid container spacing={2}>
+                <Grid item xs={9}> <p className={classes.dashText}>Total Calories burnt </p><p style={{fontSize:'35px',paddingLeft:'23px'}}><b>40 kCal </b></p></Grid>
+                <Grid item xs={3}><div style={{paddingTop:'40px',paddingRight:'-20px'}}><LocalFireDepartment sx={{fontSize:'65px',color:'#ffbd2e'}}/></div> </Grid>
+              </Grid> 
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Card sx={{width:'85%'}}>
+              <CardContent>
+              <Grid container spacing={2}>
+                <Grid item xs={9}> <p className={classes.dashText}>Total Calories consumed </p><p style={{fontSize:'35px',paddingLeft:'23px'}}><b>150 kCal </b></p></Grid>
+                <Grid item xs={3}><div style={{paddingTop:'40px',paddingRight:'-20px'}}><RiceBowl sx={{fontSize:'65px',color:'green'}}/></div> </Grid>
+              </Grid> 
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
 
         <Grid container spacing={2}>
           <Grid item xs={6}>

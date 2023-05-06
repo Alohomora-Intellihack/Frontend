@@ -31,10 +31,10 @@ export const LayoutStyles = makeStyles(() =>
       left: "0",
       bottom: "0",
       width: "100%",
-      height : '50px'
+      height : '30px'
     },
     footerText : {
-      paddingTop : '25px',
+      paddingTop : '10px',
       paddingLeft : '250px',
     },
     headerContainer : {

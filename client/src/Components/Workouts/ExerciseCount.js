@@ -17,8 +17,7 @@ const ExerciseCount = () => {
     const countInput = e.target.elements.co.value;
     console.log("count: ", countInput);
 
-    axios
-      .post(`http://localhost:5000/${propName}`, {
+    axios.post(`http://127.0.0.1:5000/${propName}`, {
         count: countInput,
       })
       .then((response) => {
