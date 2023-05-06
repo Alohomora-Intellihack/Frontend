@@ -46,6 +46,13 @@ export const HomeStyles = makeStyles(() =>
       paddingBottom :'20px !important',
       paddingRight :'50px !important'
     },
+    label: {
+      display: "flex",
+      alignItems: "center",
+      gap: "10px",
+      paddingBottom: "10px",
+      fontfamily: "Asap",
+    },
     profilePage: {
       margin: "20px 50px 30px 30px",
     },

@@ -2,21 +2,17 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from './../../Context/UserContext';
 import { HomeStyles } from './../Dashboard/styles';
-import { Grid, Card, CardContent, Button } from '@mui/material';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import { Grid, Card, CardContent, Button, Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const WorkoutDay = () => {
   const { userId } = useContext(UserContext);
-  const classes2 = HomeStyles();
   const classes = HomeStyles();
+
   return (
     <>
-      <div className={classes2.pageContainer}>
-        <div className={classes2.heading}>Workout Plan</div>
+      <div className={classes.pageContainer}>
+        <div className={classes.heading}>Workout Plan</div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Card sx={{ backgroundColor: 'purple' }}>
             <CardContent>
@@ -72,7 +68,7 @@ const WorkoutDay = () => {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Link to={`/home/${userId}/workouts/exercise`}>
+                <Link to={`/home/${userId}/workouts/exercise?propName=pullup`}>
                   <Button
                     className={classes.dashText}
                     style={{

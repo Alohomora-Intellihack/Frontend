@@ -1,18 +1,59 @@
-import { Grid, Button, Card, CardMedia, CardContent,Typography, CircularProgress} from "@mui/material";
+import { Grid, Button, Card, CardMedia, CardContent,Typography, CircularProgress, Switch,FormControlLabel,TextField } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { HomeStyles } from "./../Dashboard/styles";
+import { AddCircleRounded } from '@mui/icons-material';
 
 const DietPrediction = () => {
   const classes = HomeStyles();
   const [image, setImage] = useState(null);
+  const [text, setText] = useState("");
   const [nutrients, setNutrients] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
+
+  const handleToggle = () => {
+    setIsChecked(!isChecked);
+  };
 
   const handleChange = (e) => {
     setImage(e.target.files[0]);
   };
+
+  const handleInput = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleInputSubmit = async(e)=>{
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/text",
+        { "food_name" : text}
+      );
+      setNutrients(response.data);
+      swal({
+        text: "Nutrient profile of uploaded food image updated",
+        icon: "success",
+        timer: 2000,
+        buttons: false,
+      });
+      console.log("cholestrol: ", response.data.foods);
+    } catch (error) {
+      console.error("Error fetching nutrients:", error);
+      swal({
+        text: "Errpr in getting Nutrient Profile",
+        icon: "error",
+        timer: 2000,
+        buttons: false,
+      });
+    }finally {
+      setIsLoading(false); 
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +101,7 @@ const DietPrediction = () => {
   return (
     <>
       <div className={classes.heading}>Predicting Food Calories</div>
+      
       <Grid container spacing={2}>
         <Grid item xs={5}>
           <div className={classes.predictContainer}>
@@ -68,11 +110,35 @@ const DietPrediction = () => {
               <b> Get Nutrients</b> button to track the nutrient profile you
               consume at this moment.
             </p>
-            <form onSubmit={handleSubmit}>
+            <p className={classes.formText}>You also can provide the food name instead. slide the switch towards left for this.</p>
+            <FormControlLabel
+            control={<Switch checked={isChecked} onChange={handleToggle} />}
+            label="Image Input"
+            style={{ justifyContent: 'flex-start',fontFamily:'Asap',color:'purple'}}
+            labelPlacement="end"/>
+    
+            {isChecked && (
+              <>
+              <form onSubmit={handleSubmit}>
               <input type="file" onChange={handleChange} />
               <Button type="submit">Get Nutrients</Button>
-            </form>
+              </form>
+              </>
+            )}
+            {!isChecked && (
+              <>
+              <form onSubmit={handleInputSubmit}>
+              <TextField
+              name="text"
+              type="text"
+              value={text}
+              onChange={handleInput}/>
+              <Button type="submit">Get Nutrients</Button>
+              </form>
+              </>
+            )}
           </div>
+
         </Grid>
 
         <Grid item xs={7}>

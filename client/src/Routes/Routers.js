@@ -10,11 +10,14 @@ import  {BodyFat, BodyInfo,
   HealthProfile,
   HomePage,
   MedicalInfo,
+  Recommendations,
   SignIn,
   SignUp,
   WorkInfo,
   WorkoutDay,
   WorkoutTypes,
+  Test,
+  Guide
 } from "../Components/index";
 
 const Routers = () => {
@@ -49,9 +52,17 @@ const Routers = () => {
             </Route>
 
             <Route path="body-fat">
-              <Route index element={<BodyFat/>}/>
+              <Route index element={<Guide/>}/>
+              <Route path="calculate" element={<BodyFat/>}/>
             </Route>
-            
+
+            <Route path="recommendations">
+              <Route index element={<Recommendations/>}/>
+            </Route>
+
+             <Route path="test">
+              <Route index element={<Test/>}/>
+            </Route>
           </Route>
 
         </Routes>

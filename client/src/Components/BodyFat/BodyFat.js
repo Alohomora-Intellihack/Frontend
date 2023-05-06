@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Grid, CircularProgress } from "@mui/material";
 import axios from "axios";
-import { AuthStyles } from "../Auth/styles";
 import { Doughnut } from "react-chartjs-2";
 import { Chart } from "react-chartjs-2";
 import { HomeStyles } from "./../Dashboard/styles";

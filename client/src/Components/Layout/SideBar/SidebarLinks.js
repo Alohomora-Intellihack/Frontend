@@ -1,4 +1,4 @@
-import { AccountBox, AcUnit, DashboardCustomize, FitnessCenter, HelpCenter, NotificationsActive, RamenDining, SelfImprovement, Settings } from "@mui/icons-material";
+import { AccountBox, AcUnit, DashboardCustomize, FitnessCenter, HelpCenter, NotificationsActive, RamenDining, Recommend, SelfImprovement, Settings } from "@mui/icons-material";
 
 export const links = [
       {
@@ -16,6 +16,14 @@ export const links = [
       {
         name: 'Body-fat',
         icon: <AcUnit/>
+      },
+      {
+        name: 'test',
+        icon: <AcUnit/>
+      },
+      {
+        name: 'Recommendations',
+        icon: <Recommend/>
       },
       {
         name: 'Yoga',
