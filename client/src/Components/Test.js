@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Test = () => {
-    const data = JSON.parse(localStorage.getItem("workoutPlan"));
+    const data = JSON.parse(localStorage.getItem("workoutSchedule"));
 
-    console.log("data : ",data);
+    // console.log("data : ",data);
   return (
     <>
     <div>Testing</div>

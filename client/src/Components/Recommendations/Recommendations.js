@@ -12,7 +12,7 @@ import {
   MenuItem,
   Card,
   CardContent,
-  Typography
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import { HomeStyles } from "./../Dashboard/styles";
@@ -64,7 +64,35 @@ const Recommendations = () => {
           buttons: false,
         });
         setIsLoading(false);
-        localStorage.setItem("workoutPlan", JSON.stringify(Recommendations));
+
+        const daysOfWeek = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const workoutSchedule = {};
+
+        const parsedData = JSON.parse(response.data.workout_schedule);
+
+        if (parsedData) {
+          for (const day of daysOfWeek) {
+            if (parsedData.hasOwnProperty(day)) {
+              workoutSchedule[day] = parsedData[day];
+            } else {
+              workoutSchedule[day] = ["Rest Day"];
+            }
+          }
+        } else {
+          // Handle the case when parsedData is undefined or has unexpected structure
+          console.log("Error: Invalid workout schedule data");
+        }
+        
+        localStorage.setItem("workoutSchedule", JSON.stringify(workoutSchedule));
+       
       })
       .catch((error) => {
         console.log(error);
@@ -208,27 +236,32 @@ const Recommendations = () => {
                   {JSON.stringify(Recommendations, null, 2)}{" "}
                 </pre> */}
 
-                
-                  {Object.entries(Recommendations).map(
-                    ([day, exercises]) => (
-                        <Card sx={{margin:'10px',width :'85%'}}>
-                          <CardContent>
-                            <Typography
-                              variant="h5"
-                              component="div"
-                              sx={{backgroundColor:'#8d67af',color:'white',fontFamily:'Asap',fontWeight:'bolder',textAlign:'center',padding:'6px'}}
-                              gutterBottom>
-                              {day}
-                            </Typography>
-                            <ul>
-                              {exercises.map((exercise, index) => (
-                                <li key={index}>{exercise}</li>
-                              ))}
-                            </ul>
-                          </CardContent>
-                        </Card>
-                    )
-                  )}
+                {Object.entries(Recommendations).map(([day, exercises]) => (
+                  <Card sx={{ margin: "10px", width: "85%" }}>
+                    <CardContent>
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        sx={{
+                          backgroundColor: "#8d67af",
+                          color: "white",
+                          fontFamily: "Asap",
+                          fontWeight: "bolder",
+                          textAlign: "center",
+                          padding: "6px",
+                        }}
+                        gutterBottom
+                      >
+                        {day}
+                      </Typography>
+                      <ul>
+                        {exercises.map((exercise, index) => (
+                          <li key={index}>{exercise}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
               </>
             )}
           </div>

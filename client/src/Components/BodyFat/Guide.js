@@ -23,7 +23,7 @@ const Guide = () => {
         </div>
       </Link>
 
-      <div>
+      <div style={{margin:"40px 150px 120px 120px"}}>
        
           <h4>Density </h4>
           <p>This is typically measured using specialized equipment like
@@ -38,22 +38,35 @@ const Guide = () => {
           drinking anything and after using the bathroom, as your weight can
           fluctuate throughout the day. </p>
           
-          Height This can be measured using a tape
-          measure or a wall-mounted ruler. Stand up straight with your back
+         <h4> Height </h4>
+          <p>
+          This can be measured using a tape measure or a wall-mounted ruler. Stand up straight with your back
           against the wall, and measure from the top of your head to the bottom
-          of your feet. Neck Measure around the neck at the level of the Adam's
-          apple. Keep the tape measure snug but not too tight. Chest Measure
+          of your feet. 
+          </p>
+          <h4>Neck </h4>
+          <p>Measure around the neck at the level of the Adam's apple. Keep the 
+          tape measure snug but not too tight. Chest Measure
           around the chest at the level of the nipple. Keep the tape measure
-          snug but not too tight. Abdomen Measure around the waist at the level
-          of the belly button. Keep the tape measure snug but not too tight. Hip
+          snug but not too tight. </p>
+          <h4>Abdomen </h4>
+          <p>Measure around the waist at the level of the belly button. Keep the 
+          tape measure snug but not too tight. </p>
+          <h4>Hip</h4>
+          <p>
           Measure around the widest part of the hips. Keep the tape measure snug
           but not too tight. Thigh Measure around the thigh at the widest point.
-          Keep the tape measure snug but not too tight. Knee Measure around the
-          knee at the center of the patella. Keep the tape measure snug but not
-          too tight. Ankle Measure around the ankle at the narrowest point. Keep
-          the tape measure snug but not too tight. Biceps Measure around the
-          biceps at the widest point. Keep the arm relaxed and the tape measure
-          snug but not too tight. 
+          Keep the tape measure snug but not too tight. 
+          </p>
+         <h4> Knee </h4>
+          <p>Measure around the knee at the center of the patella. Keep the tape 
+          measure snug but not too tight. </p>
+          <h4>Ankle</h4>
+          <p>Measure around the ankle at the narrowest point. Keep
+          the tape measure snug but not too tight. </p>
+          <h4>Biceps</h4> 
+          <p>Measure around the biceps at the widest point. Keep the arm relaxed 
+          and the tape measure snug but not too tight. </p>
           <h4>Forearm</h4>
           <p>Measure around the forearm at the
           widest point. Keep the arm relaxed and the tape measure snug but not
