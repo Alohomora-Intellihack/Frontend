@@ -13,8 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { WorkoutStyles } from "./styles";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { HomeStyles } from "./../Dashboard/styles";
 import axios from "axios";
 
@@ -141,8 +140,6 @@ const Exercises = () => {
             variant="outlined"
             margin="normal"
             fullWidth
-            // value={count}
-            // onChange={(event) => setCount(event.target.value)}
           />
           <Button
             variant="contained"
