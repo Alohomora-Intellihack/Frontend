@@ -19,11 +19,11 @@ Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const Diet = () => {
   const classes = HomeStyles();
-  const { userId } = useContext(UserContext);
+
   return (
     <>
       <div className={classes.heading}>Daily Nutrient Profile</div>
-      <Link to={`/home/${userId}/nutrition/input`}>
+      <Link to={`/home/nutrition/input`}>
         <div className={classes.predictDietButton}>
           <Button variant="contained" sx={{ backgroundColor: "#8d67af" }}>
             Predict Calories <DoubleArrowSharp sx={{ fontSize: 20 }} />
