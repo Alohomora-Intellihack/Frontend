@@ -23,7 +23,7 @@ const Sidebar = () => {
         <List>
           {links.map((text) => (
             <NavLink
-              to={`/home/${userId}/${text.name}`}
+              to={`/home/${text.name}`}
               key={text.name}
               activeClassName={classes.activeNavLink} style={{ textDecoration: 'none', color: 'purple' }}>
               <ListItem key={text} disablePadding >

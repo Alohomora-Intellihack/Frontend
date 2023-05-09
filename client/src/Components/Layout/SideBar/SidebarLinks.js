@@ -18,10 +18,6 @@ export const links = [
         icon: <AcUnit/>
       },
       {
-        name: 'test',
-        icon: <AcUnit/>
-      },
-      {
         name: 'Recommendations',
         icon: <Recommend/>
       },

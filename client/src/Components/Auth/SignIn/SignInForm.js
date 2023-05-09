@@ -71,7 +71,7 @@ const SignInForm = () => {
         timer: 2000,
         buttons: false,
       });
-      navigate(`/home/${userId}`);
+      navigate(`/home`);
     }
   }, [FormErrors, isSubmit]);
 
