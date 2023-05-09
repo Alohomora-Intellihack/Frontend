@@ -23,7 +23,6 @@ const Exercises = () => {
   const data = JSON.parse(localStorage.getItem("workoutSchedule"));
   const location = useLocation();
   const propName = new URLSearchParams(location.search).get("propName");
-  const navigate = useNavigate();
 
   const getExercisesForDay = (day) => {
     return data[day] || [];
@@ -93,28 +92,29 @@ const Exercises = () => {
   return (
     <>
       <div className={classes2.pageContainer}>
-        <div className={classes2.heading}>WorkOuts plan for {propName}</div>
+        <div className={classes2.heading} style={{paddingBottom:'100px'}}>WorkOuts plan for {propName}</div>
         {dayExercises.map((exercise, index) => (
-          <Card key={index} style={{ marginBottom: "10px" }}>
+          <Card key={index} style={{ marginBottom: "30px", width:'40%',marginLeft:'340px'}}>
             <CardContent>
-              <Typography variant="h6">{exercise}</Typography>
-              <Typography variant="h6">{calories[exercise]}</Typography>
-              <Button onClick={() => handleStartButtonClick(exercise)}>
+              <Typography variant="h6" sx={{fontFamily:'Asap',textAlign:'center',paddingBottom:'15px'}}>{exercise}</Typography>
+              <Typography variant="h4" sx={{fontFamily:'Asap',fontWeight:'bolder',paddingLeft:'110px'}}>{calories[exercise]} Calories</Typography>
+              <div style={{paddingLeft:'150px',paddingTop:'30px',paddingBottom:'10px'}}>
+              <Button onClick={() => handleStartButtonClick(exercise)} sx={{backgroundColor:'#8d67af',color :'white',padding:'7px 40px'}}>
                 Start
               </Button>
+              </div>
             </CardContent>
           </Card>
         ))}
       </div>
       <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>Start Exercise</DialogTitle>
+        <DialogTitle>Video Assistance Center</DialogTitle>
         <DialogContent>
-          <Typography>{selectedExercise}</Typography>
           Do you need Video Assistance ?
         </DialogContent>
         <DialogActions>
           <Button onClick={handleNoButtonClick}>No</Button>
-          <Button>Yes</Button>
+          <Link to={`/home/workouts/exerciseCount`}><Button>Yes</Button></Link>
         </DialogActions>
       </Dialog>
 
